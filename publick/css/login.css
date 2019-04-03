@@ -1,0 +1,45 @@
+form  {
+    width:406px;
+    height: 280px;
+    border: 3px solid #0C65B3;
+    background-color: #0081D0;
+    color: #ffffff;
+    text-indent: 20px;
+}
+h2 {
+    height: 40px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: white;
+}
+input[type="email"]{
+    margin-left: 20px;
+    width: 348px ;
+    height: 20px;
+}
+input[type="password"]{
+   margin-left: 20px;
+    width: 160px;
+    height: 20px;
+}
+p{
+    padding-right: 20px;
+    white-space: nowrap;
+
+}
+.button{
+    width: 120px;
+    height: 30px;
+    margin-left: 20px;
+    background-color: #FDEB78;
+    margin-top: 20px;
+}
+
+    input::-webkit-input-placeholder       {text-indent: 0px;   transition: text-indent 0.5s ease;}
+    input::-moz-placeholder                {text-indent: 0px;   transition: text-indent 0.5s ease;}
+    input:-moz-placeholder                 {text-indent: 0px;   transition: text-indent 0.5s ease;}
+    input:-ms-input-placeholder            {text-indent: 0px;   transition: text-indent 0.5s ease;}
+    input:focus::-webkit-input-placeholder {text-indent: 500px; transition: text-indent 0.5s ease;}
+    input:focus::-moz-placeholder          {text-indent: 500px; transition: text-indent 0.5s ease;}
+    input:focus:-moz-placeholder           {text-indent: 500px; transition: text-indent 0.5s ease;}
+    input:focus:-ms-input-placeholder      {text-indent: 500px; transition: text-indent 0.5s ease;}
