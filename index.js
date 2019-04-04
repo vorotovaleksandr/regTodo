@@ -1,29 +1,15 @@
-var express = require('express');
-var bodyParser = require('body-parser')
+const app =require('./app');
+const database = require('./database');
+const config = require('./config')
 
-var app = express();
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
-
-app.use('/publick', express.static('publick'))
-app.set('view engine', 'ejs');
-
-app.get('/favicon.ico',function(req,res){
-    res.sendfile(__dirname+"/onePage/favicon.ico");
+database().then(info =>{
+    console.log(`Conected to ${info.host}:${info.port}/${info.name}`);
+    app.listen(config.PORT, () => 
+    console.log(`Example app listening ${config.PORT}!`)
+);
 })
-
-app.get('/',function(req,res){
-    res.sendfile(__dirname+"/onePage.html");
-})
-app.post('/register',urlencodedParser,function(req,res){
-    if (!req.body) return res.sendStatus(400);
-    console.log(req.body);
-    res.render('to-do', {data:req.body});
-})
-app.get('/register.ejs',function(req,res){
-    res.render('register');
-})
-app.get('/login.ejs',function(req,res){
-    res.render('login');
-})
-
-app.listen(3000);
+.catch(() =>{
+    console.error('Unable to connect to database');
+    process.exit(1);
+}
+)
