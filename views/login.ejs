@@ -6,11 +6,11 @@
     <link rel="stylesheet" href="publick/css/login.css">
 </head>
 <body>
-<form class="object" name="object" id="form" action="/register" method="post">
-<h2>Вход</h2>
+<form class="object" name="object" id="form" method="post">
+<h2>Login</h2>
     <p> E-mail</p>    <input type="email" name="email" placeholder="example@gmail.ru" required>
-    <p>Пароль</p>  <input type="password" name="password" placeholder="password" required>
-    <input type="submit" value="Отправить" class="button">
+    <p>Password</p>  <input type="password" name="password" placeholder="password" required>
+    <input value="Отправить" class="button login-button">
 </form>
 <% include blocks/footer.ejs %>
 <script type="text/javascript" src="publick/js/login.js"></script>

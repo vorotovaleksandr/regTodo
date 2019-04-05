@@ -46,3 +46,7 @@ span{
     input:focus::-moz-placeholder          {text-indent: 500px; transition: text-indent 0.5s ease;}
     input:focus:-moz-placeholder           {text-indent: 500px; transition: text-indent 0.5s ease;}
     input:focus:-ms-input-placeholder      {text-indent: 500px; transition: text-indent 0.5s ease;}
+
+    body{               
+        background-color: rgba(61, 45, 153, 0.2);
+    } 

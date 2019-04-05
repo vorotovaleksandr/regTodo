@@ -1,15 +1,19 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const bcrypt = require('bcrypt-nodejs')
-
 
 const schema = new Schema(
     {
-    email:{
+    title:{
         type: String,
         unique: true
             },
-    password:{
+    id:{
+        type: String
+    },
+    color:{
+        type: String
+    },
+    UserId2:{
         type: String
     }
 },{
@@ -19,4 +23,4 @@ const schema = new Schema(
 schema.set('toJSON', {
     virtuals: true
 });
-module.exports = mongoose.model('Post', schema);
+module.exports = mongoose.model('user', schema);

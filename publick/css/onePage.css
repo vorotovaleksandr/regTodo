@@ -1,3 +1,6 @@
+body{       
+	background-color: rgba(61, 45, 153, 0.2);
+} 
 #wrapper {
 	max-width: 960px;
 	margin: auto;
@@ -29,15 +32,16 @@ nav li {
 	display: inline-block;
 	padding: 10px 30px;
 	margin: 0;
+	color: #fff;
 }
 
 .top-menu li.active {
-	background: #29c5e6;
+	background:  #0081D0;
 	color: #fff;
 }
 
 .top-menu a {
-	color: #b2b2b2;
+	color: #fff;
 }
 #heading {
 	background: transparent url(../images/h1-bg.png);

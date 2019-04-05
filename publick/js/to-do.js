@@ -5,14 +5,17 @@ let i = 0;
 $('#Add').click(function () {
     const randB = Math.floor(Math.random() * bgcolorlist.length);
     const inputValue = $('input[name=text]').val();
+    const userId1 = $("em").attr("title");
     if(inputValue !=0)
     {items.push({
         'title': inputValue,
         'id': i,
-        'color': bgcolorlist[randB]
+        'color': bgcolorlist[randB],
+        'userId2': userId1
     });
     $('ol').empty();
     test();
+    console.log(items)
     i++
     $(function () {
         $(".checkbox").on("click", function (e) {
@@ -40,4 +43,4 @@ const test = () => {
     items.map((item) => {
         $('ol').append('<li id="' + item.id + '" class="' + item.color + '" >' + '<input type="checkbox" class="checkbox" id="checkId_' + item.id + '"/>' + item.title + '</li>');
     });
-}
+console.log(items)}
