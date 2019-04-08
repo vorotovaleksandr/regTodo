@@ -7,11 +7,7 @@ const MongoStore = require('connect-mongo')(session);
 const config = require('./config')
 const user = require('./models/user');
 
-
-
-
 mongoose.Promise = global.Promise
-
 
 const app = express();
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
@@ -40,10 +36,10 @@ app.get('/',function(req,res){
     res.render('onePage');
 })
 
-app.get('/login.ejs',function(req,res){
+app.get('/login',function(req,res){
     res.render('login');
 })
-app.get('/register.ejs',function(req,res){
+app.get('/register',function(req,res){
     res.render('register');
 })
 
@@ -51,12 +47,9 @@ app.get('/to-do',(req,res)=>{
     res.render('to-do.ejs')
 })
 
-app.post('/hello',(req,res)=>{
-    console.log('gogogogogogogo',req.body)
-    res.send('Hello world')
-})
+
 //Post Registration
-app.post('/register.ejs',urlencodedParser,(req,res)=>{
+app.post('/register',urlencodedParser,(req,res)=>{
     const { email,password } = req.body;
     const hash = bcrypt.hashSync(password);
     user.create({
