@@ -1,26 +1,25 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-
-const schema = new Schema(
-    {
-    title:{
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
+const toDoSchema = new Schema({
+    name:{
         type: String,
-        unique: true
-            },
+        requires:''
+    },
+    title:{
+        type: String,    
+    },
     id:{
         type: String
     },
     color:{
         type: String
     },
-    UserId2:{
-        type: String
+    user: {
+        ref: 'users',
+        type: Schema.Types.ObjectId
     }
-},{
-    timestamps: true
-}
-);
-schema.set('toJSON', {
-    virtuals: true
-});
-module.exports = mongoose.model('user', schema);
+
+})
+
+
+module.exports = mongoose.model('toDo', toDoSchema)
