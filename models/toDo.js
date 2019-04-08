@@ -1,10 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const toDoSchema = new Schema({
-    name:{
-        type: String,
-        requires:''
-    },
     title:{
         type: String,    
     },
