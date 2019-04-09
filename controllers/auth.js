@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const User = require('../models/User')
 const keys = require('../config/keys')
-const errorHandler = require('../utils/errorHandler')
+const errorHandler = require('../routes/utils/errorHandler')
 
 
 module.exports.login = async function(req,res) {
@@ -46,7 +46,7 @@ module.exports.register = async function(req,res) {
         })
     }else{
         // created user
-        const salt =bcrypt.genSaltSync(10)
+        const salt = bcrypt.genSaltSync(10)
         const password = req.body.password
         const user = new User({
             email: req.body.email,

@@ -1,5 +1,6 @@
 const toDo = require('../models/toDo')
-const errorHandler = require('../utils/errorHandler')
+const errorHandler = require('../routes/utils/errorHandler')
+
 
 module.exports.getAll = async function(req,res){
 try{
@@ -29,24 +30,34 @@ try{
     errorHandler(res, e)
 }      
 }
-module.exports.create = function(req,res){
+module.exports.create = async function(req, res){
+console.log(req.user)    
 const todo = new toDo({
- user: req.user.id,
- color: req.body.color,
  title: req.body.title,
- id: req.body.id
-
+ color: req.body.color,
+ user: req.user.id
 })
 try{
-    await toDo.save()
-    res.status(201).json
+    await todo.save()
+    res.status(201).json(todo)
 
-}catch (e) {
+} catch (e) {
     errorHandler(res, e)
 }     
 }
-module.exports.update = function(req,res){
+module.exports.update = async function(req,res){
+const updated = {
+    title: req.body.title,
+    color: req.body.color
+
+}    
 try{
+    const todo = await toDo.findOneAndUpdate(
+        {_id: req.params.id},
+        {$set: updated},
+        {new: true}
+    )
+    res.status(200).json(todo) 
 
 }catch (e) {
     errorHandler(res, e)

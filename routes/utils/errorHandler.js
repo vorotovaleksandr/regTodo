@@ -1,6 +1,6 @@
 module.exports = (res, error) => {
     res.status(500).json({
-        succes: false,
+        success: false,
         message: error.message ? error.message : error
     })
 }
