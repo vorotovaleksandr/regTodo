@@ -12,6 +12,9 @@ const toDoSchema = new Schema({
     user: {
         ref: 'users',
         type: Schema.Types.ObjectId
+    },
+    id:{
+        type: String
     }
 
 })

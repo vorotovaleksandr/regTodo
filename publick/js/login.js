@@ -5,14 +5,16 @@ $('.login-button').off('click').on('click', () => {
     });
 
     $.ajax({
-        url:'/login',
+        url:'/api/auth/login',
         type: 'POST',
         data
-    }).catch(()=>{
-        alert('Something wrong')
-    }).done(()=>{
+    })
+    .then(() => {
+        
 
-        window.location = 'to-do'
+        window.location = '../toDo'
+    }).catch(() => {
+        window.location = 'login'
     })
     
 })

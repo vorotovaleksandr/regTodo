@@ -35,7 +35,8 @@ console.log(req.user)
 const todo = new toDo({
  title: req.body.title,
  color: req.body.color,
- user: req.user.id
+ user: req.user.id,
+ id: req.body.id
 })
 try{
     await todo.save()

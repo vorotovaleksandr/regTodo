@@ -5,14 +5,12 @@ $('.registration-button').off('click').on('click', () => {
     });
 
     $.ajax({
-        url:'/login',
+        url:'/api/auth/regiser',
         type: 'POST',
-        data
-    }).catch(()=>{
-        alert('Something wrong')
-    }).done(()=>{
-
-        window.location = 'to-do'
-    })
-    
+        data        
+     }).then(() => {
+        window.location = 'login'
+    }).catch(() => {
+        window.location = 'register'        
+    })          
 })

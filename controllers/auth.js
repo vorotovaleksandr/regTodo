@@ -7,11 +7,10 @@ const errorHandler = require('../routes/utils/errorHandler')
 
 module.exports.login = async function(req,res) {
     const candidate = await User.findOne({email:req.body.email})
-
     if (candidate) {
         //check password
         const passwordResult = bcrypt.compareSync(req.body.password, candidate.password)
-        if(passwordResult) {
+        if (passwordResult) {
             // Generation token
             const token = jwt.sign({
                 email: candidate.email,
@@ -20,12 +19,12 @@ module.exports.login = async function(req,res) {
             res.status(200).json({
                 token: `Bearer ${token}`
             })
-        }else {
+        } else {
             res.status(401).json({
                message: 'User unautorize.'
             })
         }
-    }else{
+    } else {
         // user not found, alert
         res.status(404).json({
             message: 'user not found'
