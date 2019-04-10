@@ -2,7 +2,7 @@ const toDo = require('../models/toDo')
 const errorHandler = require('../routes/utils/errorHandler')
 
 
-module.exports.getAll = async function(req,res){
+module.exports.getAll = async function(req,res){    
 try{
     const todo = await toDo.find({user: req.user.id})
     res.status(200).json(todo)
