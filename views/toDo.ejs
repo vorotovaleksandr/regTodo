@@ -6,10 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>to-do</title>
     <link href="../../publick/css/to-do.css" rel="stylesheet"/>
+    <script src=../../publick/js/test.js></script>
 </head>
 <body>
     <ol></ol>
-    <div class="toDo">
+    <form class="toDo" name="object" id="form" method="post" action="" >
    
             <input type="text" name="text" id="text"  placeholder="Add New Item" />
             <button class="change-color red" id="red"></button>
@@ -20,7 +21,7 @@
             <input type="button" value="Add" id="Add" />
         
        
-    </div>
+    </form>
    
     <% include blocks/footer.ejs %>
     <script src=../../publick/js/to-do.js></script>

@@ -1,6 +1,18 @@
 const bgcolorlist = ['red', 'pinck', 'blue', 'lightBlue', 'yellow'];
 const items = [];
 let i = 0;
+const userId = localStorage.getItem('user.id')
+
+$(document).ready(function(){
+    // $.ajax({
+    //     url:'/api/toDo',
+    //     type: 'GET',  
+    //     // datatype: 'application/json; charset=utf-8',
+    //     userId
+    // })
+    console.log('ffff', userId)
+    });
+
 
 $('#Add').click(function () {
     const randB = Math.floor(Math.random() * bgcolorlist.length);
@@ -8,19 +20,24 @@ $('#Add').click(function () {
     if(inputValue !=0)
     {items.push({
         'title': inputValue,
-        // 'id': i,
-        'color': bgcolorlist[randB]        
+        'id': i,
+        'color': bgcolorlist[randB],
+        'userId': userId        
     });
-    // i++
-    console.log('jfjf', items)
+    i++
+    const data = items[0]
+    console.log('object',data)
+    console.log('array', items)
     $.ajax({
     url:'/api/toDo',
-    type: 'POST',
-    items
-}).then(() => {
-    console.log('items')
+    type: 'POST',  
+    datatype: 'application/json; charset=utf-8',
+    data
+})
+.then(() => {
+    console.log('items', items)
 }).catch(() => {
-    alert(message, 'errorHandler')
+    // console.log('items', items)
 })// $('ol').empty();
     
     // test();
