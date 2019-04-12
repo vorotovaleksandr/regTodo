@@ -3,9 +3,13 @@ const errorHandler = require('../routes/utils/errorHandler')
 
 
 
-module.exports.getAll = async function(req,res){    
-try{console.log(req.body)
-    const todo = await toDo.find(req.body.userId)
+module.exports.getAll = async function(req,res){
+    
+    
+try{
+    console.log("jjj", req.query.id)
+
+    const todo = await todo.find({userId : req.query.id})
     res.status(200).json(todo)
 
 } catch (e) {
@@ -41,7 +45,7 @@ const todo = new toDo({
  userId: req.body.userId
 })
 try{
-    console.log('todo', todo)
+    
     await todo.save()
     res.status(201).json(todo)
 
