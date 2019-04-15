@@ -2,15 +2,36 @@ const bgcolorlist = ['red', 'pinck', 'blue', 'lightBlue', 'yellow'];
 const items = [];
 let i = 0;
 const userId = localStorage.getItem('user.id')
-$.ajax({
-    url: "http://localhost:5000/api/toDo",
-    type: 'GET',
-    beforeSend: function (xhr) {
-        xhr.setRequestHeader("Authorization", value.token);
-    },
+
+
+$(document).ready(function () {
+    $.ajax({
+            url: 'toDo',
+            type: 'PATCH',
+        })
+        .then((value) => {
+            console.log('todo', value)
+            // value.splice(0,items.leght)
+            // console.log('todos', value)
+            value.forEach(function (item) {
+
+
+                items.splice(0, items.length);
+                items.push({
+                    'title': item.title,
+                    'id': item.id,
+                    'color': item.color,
+                    'userId': item.userId
+                });
+                itemsMap();
+
+            })
+
+        }).catch(() => {
+
+        })
 });
-$(document).ready(function () {    
-});
+
 $('#Add').click(function () {
     const randB = Math.floor(Math.random() * bgcolorlist.length);
     const inputValue = $('input[name=text]').val();
@@ -32,7 +53,7 @@ $('#Add').click(function () {
             })
             .then(() => {
                 $('ol').empty();
-                itemsMap();
+                // itemsMap();
                 // itemsEdit();
             }).catch(() => {
 
@@ -58,7 +79,8 @@ const itemsEdit = () => {
                         if (item.id == currentId) {
                             item.color = currentColor
                         }
-                    }) {
+                    }) 
+                    {
                         $('.checkbox:checked').parent().removeClass().addClass(currentColor);
                     };
                 })

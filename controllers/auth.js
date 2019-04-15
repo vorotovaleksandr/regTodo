@@ -10,10 +10,12 @@ module.exports.login = async function (req, res) {
         //check password
         const passwordResult = bcrypt.compareSync(req.body.password, candidate.password)
         if (passwordResult) {
-            // send session             
-            req.session.userId = candidate._id
-            req.body.userId = candidate._id
-            res.render('login');
+            // send session
+            const candidateId = candidate._id
+            req.session.userId = candidateId            
+            res.status(201).json(candidateId)
+            
+
         } else {
             res.status(401).json({
                 message: 'User unautorize.'

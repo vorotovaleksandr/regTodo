@@ -9,8 +9,9 @@ $('.login-button').off('click').on('click', () => {
             datatype: 'json',
             data
         })
-        .then((value) => {
-            localStorage.setItem('user.id', value.userId)
+        .then((value) => {    
+            localStorage.setItem('user.id', value)
+
             window.location = ("../toDo")
         }).catch(() => {
             window.location = 'login'
