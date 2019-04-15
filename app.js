@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const MongoStore = require('connect-mongo')(session);
 const authRoutes = require('./routes/auth')
 const toDoRoutes = require('./routes/toDo')
+const onePageRoutes = require('./routes/onePage')
 const keys = require('./config/keys')
 const app = express()
 // mongoo connect
@@ -36,7 +37,5 @@ app.use(session({
 // routes
 app.use('/api/auth', authRoutes)
 app.use('/api/toDo', toDoRoutes)
-app.get('/', function (req, res) {
-    res.render('onePage');
-})
+app.use('/', onePageRoutes)
 module.exports = app
