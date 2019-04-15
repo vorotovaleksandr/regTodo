@@ -1,7 +1,9 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
-const passport = require('passport')
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
+const MongoStore = require('connect-mongo')(session);
 const authRoutes = require('./routes/auth')
 const toDoRoutes = require('./routes/toDo')
 const keys = require('./config/keys')
@@ -15,15 +17,19 @@ mongoose.connect(keys.mongoURI,{ useNewUrlParser: true },)
 
 app.use('/publick', express.static('publick'))
 app.set('view engine', 'ejs');
-
-// passport
-app.use(passport.initialize())
-require('./middleware/passport')(passport)    
+   
 //dev
-app.use(require('morgan')('dev'))
-app.use(require('cors')('dev'))
+app.use(cookieParser('some text'));
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
+
+app.use(session({
+    secret: 'secret node',    
+    store: new MongoStore({ 
+      url: keys.mongoURI,
+    }),
+  
+  }))
 
 // routes
 app.use('/api/auth', authRoutes)
@@ -42,8 +48,13 @@ app.get('/api/auth/register',function(req,res){
     res.render('register');
 })
 
-app.get('/api/toDo',(req,res)=>{
-    res.render('toDo.ejs')
-})
+app.get('/api/toDo', function (req, res) {
+    
+    if (req.session.username) {       
+        res.render('toDo');
+    } else {
+        res.status(403).send('Access Denied!');
+    };
+});
 
 module.exports = app

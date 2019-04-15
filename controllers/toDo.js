@@ -7,9 +7,7 @@ module.exports.getAll = async function(req,res){
     
     
 try{
-    console.log("jjj", req.query.id)
-
-    const todo = await todo.find({userId : req.query.id})
+    
     res.status(200).json(todo)
 
 } catch (e) {

@@ -1,10 +1,6 @@
 const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
 const User = require('../models/User')
-const keys = require('../config/keys')
 const errorHandler = require('../routes/utils/errorHandler')
-
-
 
 module.exports.login = async function(req,res) {
     const candidate = await User.findOne({email:req.body.email})
@@ -13,18 +9,12 @@ module.exports.login = async function(req,res) {
         //check password
         const passwordResult = bcrypt.compareSync(req.body.password, candidate.password)
         if(passwordResult) {
-            // Generation token
-            const token = jwt.sign({
-                email: candidate.email,
-                userId: candidate._id
-            }, keys.jwt ,{expiresIn:60 * 60})
-            res.status(200).json({
-                userId: candidate._id,                
-                token: `Bearer ${token}`
-            })
+            // send session            
+            req.session.username = candidate.email;   
+            res.render('login');             
         }else {
             res.status(401).json({
-               message: 'User unautorize.'
+                message: 'User unautorize.'
             })
         }
     }else{
@@ -34,8 +24,6 @@ module.exports.login = async function(req,res) {
         })
     }
 }
-
-
 module.exports.register = async function(req,res) {
     //email password
     
