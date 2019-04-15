@@ -1,18 +1,22 @@
-body{       
+body {
 	background-color: rgba(61, 45, 153, 0.2);
-} 
+}
+
 #wrapper {
 	max-width: 960px;
 	margin: auto;
 }
+
 header {
-    padding: 20px 0;
-    }
-img{
-    width: 50px;
-    height: 50px;
-    margin: 20px;
+	padding: 20px 0;
 }
+
+img {
+	width: 50px;
+	height: 50px;
+	margin: 20px;
+}
+
 nav a {
 	text-decoration: none;
 }
@@ -36,13 +40,14 @@ nav li {
 }
 
 .top-menu li.active {
-	background:  #0081D0;
+	background: #0081D0;
 	color: #fff;
 }
 
 .top-menu a {
 	color: #fff;
 }
+
 #heading {
 	background: transparent url(../images/h1-bg.png);
 	margin: 30px 0;

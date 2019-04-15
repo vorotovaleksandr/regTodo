@@ -2,21 +2,19 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const toDoSchema = new Schema({
-    title:{
+    title: {
         type: String,
-              
-    },    
-    color:{
+    },
+    color: {
         type: String
     },
-    id:{
+    id: {
         type: String
     },
-    userId:{
+    userId: {
         type: String
     }
 
 })
-
 
 module.exports = mongoose.model('toDos', toDoSchema)
