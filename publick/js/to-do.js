@@ -69,8 +69,8 @@ const itemsEdit = () => {
                     if (item.id = currentId) {
                         item.color = currentColor
                     }
-                }) {
-                    const data = items[0]
+                }) 
+                {   const data = items[0]
                     $.ajax({
                             url: 'toDo',
                             type: 'PATCH',

@@ -9,7 +9,7 @@ $('.registration-button').off('click').on('click', () => {
         datatype: 'json',
         data
     }).then(() => {
-        window.location = 'login'
+        window.location = ('login')
     }).catch(() => {
         window.location = 'register'
     })
