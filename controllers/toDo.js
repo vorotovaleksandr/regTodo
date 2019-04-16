@@ -20,15 +20,29 @@ module.exports.getById = async (req, res) => {
   }
 }
 module.exports.remove = async (req, res) => {
-  try {
-    await toDo.remove({
-      _id: req.params.id
-    })
-    res.status(200).json({
-      message: 'to-do deleted'
-    })
-  } catch (e) {
-    errorHandler(res, e)
+  if (req.body.id) {
+    try {
+      await toDo.remove({
+        userId: req.session.userId,
+        id: req.body.id
+      })
+      res.status(200).json({
+        message: 'to-do deleted'
+      })
+    } catch (e) {
+      errorHandler(res, e)
+    }
+  } else {
+    try {
+      await toDo.remove({
+        userId: req.session.userId
+      })
+      res.status(200).json({
+        message: 'All to-do deleted'
+      })
+    } catch (e) {
+      errorHandler(res, e)
+    }
   }
 }
 module.exports.create = async (req, res) => {

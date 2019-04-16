@@ -21,7 +21,7 @@ body {
   margin: auto;
 }
 
-button {
+.change-color {
   margin-left: 3px;
   width: 16px;
   height: 16px;
@@ -60,8 +60,6 @@ button {
   width: 66px;
   height: 33px;
   color: white;
-  text-decoration: none;
-  transition: 0.2s;
   margin-left: 3px;
   border-radius: 3px;
   border: none;
@@ -133,4 +131,18 @@ li {
   display: inline-flex;
   margin: 20px;
   border-right: 1px solid #ebf3f6;
+}
+
+.check {
+
+  text-align: start;
+  float: right;
+  margin-top: 5px;
+  border: 2px;
+}
+.dlt {  
+  text-align: start;
+  float: right;
+  margin-top: 5px;
+  border: 2px;
 }

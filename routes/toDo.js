@@ -9,9 +9,8 @@ router.get('/', (req, res) => {
     res.status(403).send('Access Denied!');
   };
 });
-router.put('/', controller.getAll);
-router.get('/:id', controller.getById);
-router.delete('/:id', controller.remove);
+router.get('/all', controller.getAll);
+router.put('/remove', controller.remove);
 router.post('/', controller.create);
 router.patch('/', controller.update);
 
