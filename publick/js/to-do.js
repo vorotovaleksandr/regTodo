@@ -44,7 +44,7 @@ $('#Add').off('click').on('click', () => {
                 data
             })
             .then(() => {
-                window.setTimeout("location = ''", 50)
+                window.setTimeout("location = ''", 10)
             }).catch(() => {
 
             })
@@ -55,7 +55,7 @@ $('#Add').off('click').on('click', () => {
 })
 const itemsMap = () => {
     items.map((item) => {
-        $('ol').append('<li id="' + item.id + '" class="' + item.color + '" >' + '<input type="checkbox" class="checkbox" id="checkId_' + i + '"/>' + item.title + '</li>');
+        $('ol').append('<li id="' + i + '" class="' + item.color + '" >' + '<input type="checkbox" class="checkbox" id="checkId_' + i + '"/>' + item.title + '</li>');
     });
 }
 const itemsEdit = () => {
@@ -70,7 +70,8 @@ const itemsEdit = () => {
                         item.color = currentColor
                     }
                 }) 
-                {   const data = items[0]
+                {
+                    const data = items[0]
                     $.ajax({
                             url: 'toDo',
                             type: 'PATCH',
@@ -78,7 +79,8 @@ const itemsEdit = () => {
                             data
                         })
                         .then(() => {
-                            window.setTimeout("location = ''", 50)
+
+                            window.setTimeout("location = ''", 10)
                         }).catch(() => {
 
                         })

@@ -50,14 +50,11 @@ module.exports.update = async function (req, res) {
         color: req.body.color,
     }
     try {
-        const todo = await toDo.findOneAndUpdate([{
-            userId: req.session.userId
-        }, {
+        const todo = await toDo.findOneAndUpdate({
+            userId: req.session.userId,
             id: req.body.id
-        }], {
-            $set: updated
         }, {
-            new: true
+            $set: updated
         })
         res.status(200).json(todo)
 
