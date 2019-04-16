@@ -9,10 +9,10 @@ router.get('/',  function (req, res) {
         res.status(403).send('Access Denied!');
     };
 });
-router.patch('/', controller.getAll)
+router.put('/', controller.getAll)
 router.get('/:id', controller.getById)
 router.delete('/:id', controller.remove)
 router.post('/', controller.create)
-// router.patch('/:id', controller.update)
+router.patch('/', controller.update)
 
 module.exports = router
