@@ -9,7 +9,9 @@ body {
   margin-right: auto;
   font-family: "Poppins", sans-serif;
   font-size: 20px;
-  padding: 10px; 
+  padding: 10px;
+  padding: 0;
+  position: relative;
 }
 
 .toDo {
@@ -140,6 +142,7 @@ li {
   margin-top: 5px;
   border: 2px;
 }
+
 .edit {
 
   text-align: start;
@@ -147,15 +150,40 @@ li {
   margin-top: 5px;
   border: 2px;
 }
+
 .dlt {
-  vertical-align: middle; 
   margin-top: 5px;
-  border: 2px;    
-  left: 500px;
-  position:fixed;
+  border: 2px;
   margin-left: auto;
-  margin-right: auto;
-  top:auto;
-  right:0;
-  width:100px;
+  display: block;
+
+}
+
+nav {
+  border: 1px solid gray;
+  border-radius: 3px;
+  width: 100%;
+  position: absolute;
+  height: 70px;
+  left: 0px;
+  top: 0px;
+  justify-content: space-between;
+  padding: .5rem 1rem;
+  display: flex;
+}
+
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  position: static;
+  padding-top: 85px;
+}
+
+.del {
+  margin-left: auto;
 }

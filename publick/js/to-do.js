@@ -3,10 +3,11 @@ const items = [];
 const userId = localStorage.getItem('user.id');
 const min = -100000;
 const max = 250000;
-const myRandomValue = min + (max - min) * Math.random()
-let i = myRandomValue
+const myRandomValue = min + (max - min) * Math.random();
+let i = myRandomValue;
 
 $(document).ready(() => {
+  sessionDelete();
   $.ajax({
       url: 'to-do/all',
       type: 'GET',
@@ -25,10 +26,12 @@ $(document).ready(() => {
         itemsEdit();
         itemsDelete();
         allItemsDelete();
-      })
+        itemsTitleEdit();
+
+      });
     }).catch((err) => {
       console.log('err', err)
-    })
+    });
 });
 $('#Add').off('click').on('click', () => {
   const randB = Math.floor(Math.random() * bgcolorlist.length);
@@ -41,7 +44,7 @@ $('#Add').off('click').on('click', () => {
       'color': bgcolorlist[randB],
       'userId': userId
     });
-    const data = items[0]
+    const data = items[0];
     $.ajax({
         url: 'to-do',
         type: 'POST',
@@ -49,64 +52,64 @@ $('#Add').off('click').on('click', () => {
         data
       })
       .then(() => {
-        window.setTimeout("location = ''", 10)
+        window.setTimeout("location = ''", 10);
       }).catch((err) => {
         console.log('err', err)
-      })
+      });
     $("#text").val('');
   } else {
-    alert("Input field is empty")
-  }
-})
+    alert("Input field is empty");
+  };
+});
 const itemsMap = () => {
   items.map((item) => {
     $('ol').append(`<li id="${item.id}" class=${item.color}><input type="checkbox" class="checkbox" id="checkId_${item.id}"/>${item.title}<button class="check btn btn-outline-danger" id="checkBtn_${item.id}" ><i class="fa fa-trash-o" aria-hidden="true"></i></button><button class="edit btn btn-outline-success" id="editBtn_${item.id}"><i class="fa fa-pencil"></i></button></li>`);
   });
-}
+};
 const itemsEdit = () => {
   $(".checkbox").off('click').on('click', (e) => {
     const currentId = $(e.currentTarget).attr('id').replace('checkId_', '');
     $('.change-color').off('click').on('click', (a) => {
       const currentColor = $(a.currentTarget).attr('id');
       items.map((item) => {
-        item.id = currentId
-        item.color = currentColor
-      }) 
-      { const data = items[0]
+        item.id = currentId;
+        item.color = currentColor;
+      });
+      { const data = items[0];
         $.ajax({
           url: 'to-do',
           type: 'PATCH',
           datatype: 'application/json; charset=utf-8',
           data
         }).then(() => {
-          window.setTimeout("location = ''", 10)
+          window.setTimeout("location = ''", 10);
         }).catch((err) => {
-          console.log('err', err)
-        })
+          console.log('err', err);
+        });
       };
-    })
+    });
   });
-}
+};
 const itemsDelete = () => {
   $(".check").off('click').on('click', (c) => {
     const currentId = $(c.currentTarget).attr('id').replace('checkBtn_', '');
     items.map((item) => {
-      item.id = currentId
-    }) 
-    { const data = items[0]
+      item.id = currentId;
+    }); 
+    { const data = items[0];
       $.ajax({
         url: 'to-do/remove',
         type: 'PUT',
         datatype: 'application/json; charset=utf-8',
         data
       }).then(() => {
-        window.setTimeout("location = ''", 10)
+        window.setTimeout("location = ''", 10);
       }).catch((err) => {
-        console.log('err', err)
-      })
+        console.log('err', err);
+      });
     };
   });
-}
+};
 const allItemsDelete = () => {
   $(".dlt").off('click').on('click', (c) => {
     {
@@ -115,10 +118,48 @@ const allItemsDelete = () => {
         type: 'PUT',
         datatype: 'application/json; charset=utf-8'
       }).then(() => {
-        window.setTimeout("location = ''", 10)
+        window.setTimeout("location = ''", 10);
       }).catch((err) => {
-        console.log('err', err)
-      })
+        console.log('err', err);
+      });
     };
   });
-}
+};
+const itemsTitleEdit = () => {
+  $(".edit").off('click').on('click', (c) => {
+    const currentId = $(c.currentTarget).attr('id').replace('editBtn_', '');
+    const inputValue = $('input[name=text]').val();
+    if (inputValue) {
+      items.map((item) => {
+        item.id = currentId;
+        item.title = inputValue;
+      }) 
+      { const data = items[0];
+        $.ajax({
+          url: 'to-do/edit',
+          type: 'PUT',
+          datatype: 'application/json; charset=utf-8',
+          data
+        }).then(() => {
+          window.setTimeout("location = ''", 10);
+        }).catch((err) => {
+          console.log('err', err);
+        });
+      };
+    } else {
+      alert("Input field is empty");
+    };
+  });
+};
+const sessionDelete = () => {
+  $("#exit").off('click').on('click', () => {
+    {
+      $.ajax({
+        url: 'to-do/drop',
+        type: 'PUT',
+        datatype: 'application/json; charset=utf-8'
+      })
+    };
+    window.setTimeout("location = ''", 10);
+  });
+};

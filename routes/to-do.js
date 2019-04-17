@@ -13,5 +13,7 @@ router.get('/all', controller.getAll);
 router.put('/remove', controller.remove);
 router.post('/', controller.create);
 router.patch('/', controller.update);
+router.put('/edit', controller.edit);
+router.put('/drop', controller.drop);
 
 module.exports = router

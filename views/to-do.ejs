@@ -10,6 +10,11 @@
      href="../../publick/css/to-do.css" /> 
 </head>
 <body>
+<div id="wrapper">
+<nav class="navbar-light bg-light">
+  <a class="navbar-brand">To-do</a>
+  <button class="exit btn btn-light" id="exit" >Exit</button>
+</nav>  
   <ol></ol>
   <div class="toDo" name="object" id="form" method="post" action="" >   
     <input type="text" name="text" id="text"  placeholder="Add New Item" />
@@ -20,8 +25,9 @@
     <button class="change-color yellow" id="yellow"></button>
     <input type="button" value="Add" id="Add"  class="btn btn-success"/>   
   </div>
-  <div >
+  <div class="del">
   <button class="dlt btn btn-outline-danger" id="">Delete All</button>
+  </div>
   </div>   
     <% include blocks/footer.ejs %>
     <script src=../../publick/js/to-do.js></script>

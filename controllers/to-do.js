@@ -75,3 +75,25 @@ module.exports.update = async (req, res) => {
     errorHandler(res, e)
   }
 }
+module.exports.edit = async (req, res) => {
+  const updated = {
+    title: req.body.title,
+  }
+  try {
+    const todo = await toDo.findOneAndUpdate({
+      userId: req.session.userId,
+      id: req.body.id
+    }, {
+      $set: updated
+    })
+    res.status(200).json(todo)
+  } catch (e) {
+    errorHandler(res, e)
+  }
+}
+module.exports.drop = async (req, res) => {
+  req.session.destroy(function () {
+    req.session = null;
+    res.clearCookie('connect.sid');
+  });
+}
