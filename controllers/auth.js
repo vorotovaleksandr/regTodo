@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs')
 const User = require('../models/User')
-const errorHandler = require('../routes/utils/errorHandler')
+const errorHandler = require('../routes/utils/error-handler')
 
 module.exports.login = async (req, res) => {
   const candidate = await User.findOne({
@@ -37,13 +37,11 @@ module.exports.register = async (req, res) => {
       message: 'such an email is already taken'
     })
   } else {
-    // created user
-    const salt = bcrypt.genSaltSync(10)
-    const password = req.body.password
+    // created user    
     const user = new User({
       email: req.body.email,
-      password: bcrypt.hashSync(password, salt)
-    })
+      password: req.body.password
+    })  
     try {
       await user.save()
       res.status(201).json(user)

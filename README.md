@@ -19,5 +19,5 @@ npm run server
     + Login
       + Create To-do: Click add button
         + Update To-do: Checked checkbox and click color button
-         + Delete To-Do: Click trash can
-          + Delete All: Click Delete All buton
+          + Delete To-Do: Click trash can
+            + Delete All: Click Delete All buton

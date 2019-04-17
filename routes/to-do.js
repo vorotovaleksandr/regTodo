@@ -1,12 +1,12 @@
 const express = require('express');
-const controller = require('../controllers/toDo');
+const controller = require('../controllers/to-do');
 const router = express.Router();
-// localhost:5000/api/toDo
+// localhost:5000/api/to-do
 router.get('/', (req, res) => {
   if (req.session.userId) {
-    res.render('toDo');
+    res.render('to-do');
   } else {
-    res.status(403).send('Access Denied!');
+    res.redirect('auth/login')
   };
 });
 router.get('/all', controller.getAll);

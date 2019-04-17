@@ -8,7 +8,7 @@ let i = myRandomValue
 
 $(document).ready(() => {
   $.ajax({
-      url: 'toDo/all',
+      url: 'to-do/all',
       type: 'GET',
     })
     .then((value) => {
@@ -43,7 +43,7 @@ $('#Add').off('click').on('click', () => {
     });
     const data = items[0]
     $.ajax({
-        url: 'toDo',
+        url: 'to-do',
         type: 'POST',
         datatype: 'application/json; charset=utf-8',
         data
@@ -60,7 +60,7 @@ $('#Add').off('click').on('click', () => {
 })
 const itemsMap = () => {
   items.map((item) => {
-    $('ol').append(`<li id="${item.id}" class=${item.color}><input type="checkbox" class="checkbox" id="checkId_${item.id}"/>${item.title}<button class="check btn btn-outline-danger" id="checkBtn_${item.id}" ><i class="fa fa-trash-o" aria-hidden="true"></i></button></li>`);
+    $('ol').append(`<li id="${item.id}" class=${item.color}><input type="checkbox" class="checkbox" id="checkId_${item.id}"/>${item.title}<button class="check btn btn-outline-danger" id="checkBtn_${item.id}" ><i class="fa fa-trash-o" aria-hidden="true"></i></button><button class="edit btn btn-outline-success" id="editBtn_${item.id}"><i class="fa fa-pencil"></i></button></li>`);
   });
 }
 const itemsEdit = () => {
@@ -74,7 +74,7 @@ const itemsEdit = () => {
       }) 
       { const data = items[0]
         $.ajax({
-          url: 'toDo',
+          url: 'to-do',
           type: 'PATCH',
           datatype: 'application/json; charset=utf-8',
           data
@@ -95,7 +95,7 @@ const itemsDelete = () => {
     }) 
     { const data = items[0]
       $.ajax({
-        url: 'toDo/remove',
+        url: 'to-do/remove',
         type: 'PUT',
         datatype: 'application/json; charset=utf-8',
         data
@@ -111,7 +111,7 @@ const allItemsDelete = () => {
   $(".dlt").off('click').on('click', (c) => {
     {
       $.ajax({
-        url: 'toDo/remove',
+        url: 'to-do/remove',
         type: 'PUT',
         datatype: 'application/json; charset=utf-8'
       }).then(() => {

@@ -1,5 +1,5 @@
-const toDo = require('../models/toDo')
-const errorHandler = require('../routes/utils/errorHandler')
+const toDo = require('../models/to-do')
+const errorHandler = require('../routes/utils/error-handler')
 
 module.exports.getAll = async (req, res) => {
   try {
