@@ -26,7 +26,7 @@ $(document).ready(() => {
         itemsEdit();
         itemsDelete();
         allItemsDelete();
-        itemsTitleEdit();  
+        itemsTitleEdit();    
       });
     }).catch((err) => {
       console.log('err', err)
@@ -67,8 +67,8 @@ const itemsMap = () => {
 };
 const itemsEdit = () => {
   $(".checkbox").off('click').on('click', (e) => {  
-    const currentId = $(e.currentTarget).attr('id').replace('checkId_', '');  
-    $('.change-color').off('click').on('click', (a) => {
+    const currentId = $(e.currentTarget).attr('id').replace('checkId_', '');		
+     $('.change-color').off('click').on('click', (a) => {
       const currentColor = $(a.currentTarget).attr('id');
       items.map((item) => {
         item.id = currentId;
@@ -87,8 +87,8 @@ const itemsEdit = () => {
         });
       };
     });
-  });
-};
+  })  
+}
 const itemsDelete = () => {
   $(".check").off('click').on('click', (c) => {
     const currentId = $(c.currentTarget).attr('id').replace('checkBtn_', '');
