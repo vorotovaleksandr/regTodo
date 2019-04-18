@@ -159,6 +159,13 @@ li {
 
 }
 
+.anyDlt {
+  margin-top: 5px;
+  border: 2px;
+  
+
+}
+
 nav {
   border: 1px solid gray;
   border-radius: 3px;
@@ -186,4 +193,38 @@ nav {
 
 .del {
   margin-left: auto;
+}
+
+#textNew {
+  width: 300px;
+  height: 45px;
+  text-decoration: none;
+  outline: none;
+  border: none;
+  vertical-align: middle;
+}
+
+.newToDo {
+  width: 450px;
+  height: 50px;
+  border: 1px solid gray;
+  border-radius: 3px;
+  background-color: white;
+  margin: auto;
+}
+
+#newAdd {
+  background-color: #26a59a;
+  width: 70px;
+  height: 38px;
+  color: white;
+  margin-left: 3px;
+  border-radius: 3px;
+  border: none;
+  vertical-align: middle;
+}
+#dlets{
+  display: inline-block;
+  margin-left: auto;
+ 
 }

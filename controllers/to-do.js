@@ -19,7 +19,7 @@ module.exports.getById = async (req, res) => {
     errorHandler(res, e)
   }
 }
-module.exports.remove = async (req, res) => {
+module.exports.remove = async (req, res) => {  
   if (req.body.id) {
     try {
       await toDo.remove({
