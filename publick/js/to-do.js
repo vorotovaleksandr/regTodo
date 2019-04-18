@@ -26,38 +26,23 @@ $(document).ready(() => {
         itemsEdit();
         itemsDelete();
         allItemsDelete();
-        itemsTitleEdit();    
+        itemsTitleEdit();
       });
     }).catch((err) => {
-      console.log('err', err)
+      console.log('err', err);
     });
 });
-$('#Add').off('click').on('click', () => {
-  const randB = Math.floor(Math.random() * bgcolorlist.length);
-  const inputValue = $('#text').val();
-  if (inputValue) {
-    items.splice(0, items.length);
-    items.push({
-      'title': inputValue,
-      'id': i,
-      'color': bgcolorlist[randB],
-      'userId': userId
+$('#text').keypress((event) => {
+  if (event.keyCode == 13) {
+    jobInput();
+  } 
+  if (event.keyCode == 32) {
+    jobInput();
+  }
+  else {
+    $('#Add').off('click').on('click', () => {
+      jobInput();
     });
-    const data = items[0];
-    $.ajax({
-        url: 'to-do',
-        type: 'POST',
-        datatype: 'application/json; charset=utf-8',
-        data
-      })
-      .then(() => {
-        window.setTimeout("location = ''", 10);
-      }).catch((err) => {
-        console.log('err', err)
-      });
-    $("#text").val('');
-  } else {
-    alert("Input field is empty");
   };
 });
 const itemsMap = () => {
@@ -66,9 +51,9 @@ const itemsMap = () => {
   });
 };
 const itemsEdit = () => {
-  $(".checkbox").off('click').on('click', (e) => {  
-    const currentId = $(e.currentTarget).attr('id').replace('checkId_', '');		
-     $('.change-color').off('click').on('click', (a) => {
+  $(".checkbox").off('click').on('click', (e) => {
+    const currentId = $(e.currentTarget).attr('id').replace('checkId_', '');
+    $('.change-color').off('click').on('click', (a) => {
       const currentColor = $(a.currentTarget).attr('id');
       items.map((item) => {
         item.id = currentId;
@@ -87,8 +72,8 @@ const itemsEdit = () => {
         });
       };
     });
-  })  
-}
+  });
+};
 const itemsDelete = () => {
   $(".check").off('click').on('click', (c) => {
     const currentId = $(c.currentTarget).attr('id').replace('checkBtn_', '');
@@ -129,7 +114,7 @@ const itemsTitleEdit = () => {
     const currentId = $(q.currentTarget).attr('id').replace('editBtn_', '');
     $('.newAdd').off('click').on('click', () => {
       const inputValue = $('#textNew').val();
-      if (inputValue) {        
+      if (inputValue) {
         items.map((item) => {
           item.id = currentId;
           item.title = inputValue;
@@ -145,13 +130,13 @@ const itemsTitleEdit = () => {
           }).catch((err) => {
             console.log('err', err);
           });
-        }
+        };
       } else {
         alert("Input field is empty");
-      }
-    })
-  })
-}
+      };
+    });
+  });
+};
 const sessionDelete = () => {
   $("#exit").off('click').on('click', () => {
     {
@@ -163,4 +148,32 @@ const sessionDelete = () => {
     };
     window.setTimeout("location = ''", 10);
   });
+};
+const jobInput = () => {
+  const randB = Math.floor(Math.random() * bgcolorlist.length);
+  const inputValue = $('#text').val();
+  if (inputValue) {
+    items.splice(0, items.length);
+    items.push({
+      'title': inputValue,
+      'id': i,
+      'color': bgcolorlist[randB],
+      'userId': userId
+    });
+    const data = items[0];
+    $.ajax({
+        url: 'to-do',
+        type: 'POST',
+        datatype: 'application/json; charset=utf-8',
+        data
+      })
+      .then(() => {
+        window.setTimeout("location = ''", 10);
+      }).catch((err) => {
+        console.log('err', err);
+      });
+    $("#text").val('');
+  } else {
+    alert("Input field is empty");
+  };
 };
